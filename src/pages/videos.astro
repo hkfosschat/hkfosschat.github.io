@@ -1,9 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import VideoGrid from '../components/VideoGrid.astro';
-import { fetchYouTubeVideos } from '../utils/social';
+import { fetchYouTubeVideos } from '../utils/api.js';
 
-const videos = await fetchYouTubeVideos('UC_YOURCHANNEL_PLACEHOLDER');
+let videos = [];
+try {
+	const youtubeData = await fetchYouTubeVideos('UC_YOURCHANNEL_PLACEHOLDER');
+	if (youtubeData && youtubeData.items) {
+		videos = youtubeData.items.map((item: any) => ({
+			id: item.contentDetails.videoId,
+			title: item.snippet.title,
+			thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.default?.url,
+			url: `https://youtube.com/watch?v=${item.contentDetails.videoId}`
+		}));
+	}
+} catch (e) {
+	console.error('Failed to fetch YouTube videos:', e);
+}
 ---
 
 <Layout title="Videos | Starpod">

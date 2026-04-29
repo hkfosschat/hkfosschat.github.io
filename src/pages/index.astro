@@ -1,10 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialCard from '../components/SocialCard.astro';
-import { fetchMastodonPost, fetchThreadsPost } from '../utils/social';
+import { fetchMastodonPost, fetchThreadsPost } from '../utils/api.js';
 
-const mastodonPost = await fetchMastodonPost();
-const threadsPost = await fetchThreadsPost();
+let mastodonPost = null;
+try {
+	const mastodonData = await fetchMastodonPost('https://mastodon.social/@HKFOSSChat');
+	if (mastodonData && mastodonData.length > 0) {
+		const post = mastodonData[0];
+		mastodonPost = {
+			platform: 'mastodon',
+			author: post.account.display_name || post.account.username,
+			content: post.content,
+			date: post.created_at,
+			url: post.url
+		};
+	}
+} catch (e) {
+	console.error('Failed to fetch Mastodon post:', e);
+}
+
+let threadsPost = null;
+try {
+	const threadsData = await fetchThreadsPost();
+	if (threadsData && threadsData.data && threadsData.data.length > 0) {
+		const post = threadsData.data[0];
+		threadsPost = {
+			platform: 'threads',
+			author: 'HKFOSSChat', // Threads API often doesn't include user details in basic post fetch without extra scopes
+			content: post.text || 'View post on Threads',
+			date: post.timestamp,
+			url: `https://www.threads.net/@hkfosschat/post/${post.id}`
+		};
+	}
+} catch (e) {
+	console.error('Failed to fetch Threads post:', e);
+}
 ---
 
 <Layout title="Welcome to Starpod">
