@@ -23,7 +23,7 @@ export async function fetchYouTubeVideos(channelId) {
  */
 export async function fetchMastodonPost(accountUrl) {
   let domain = 'mastodon.social';
-  let accountId = '109243'; // Hardcoded fallback as requested
+  let accountId = import.meta.env.MASTODON_ACCOUNT_ID || '109243'; // Hardcoded fallback as requested
 
   if (accountUrl) {
     try {

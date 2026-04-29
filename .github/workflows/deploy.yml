@@ -36,7 +36,9 @@ jobs:
         run: npm run build
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          MASTODON_ACCOUNT_ID: ${{ secrets.MASTODON_ACCOUNT_ID }}
           
       - name: Setup Pages
         uses: actions/configure-pages@v5

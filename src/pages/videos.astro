@@ -5,7 +5,8 @@ import { fetchYouTubeVideos } from '../utils/api.js';
 
 let videos = [];
 try {
-	const youtubeData = await fetchYouTubeVideos('UC_YOURCHANNEL_PLACEHOLDER');
+	const channelId = import.meta.env.YOUTUBE_CHANNEL_ID || 'UC_YOURCHANNEL_PLACEHOLDER';
+	const youtubeData = await fetchYouTubeVideos(channelId);
 	if (youtubeData && youtubeData.items) {
 		videos = youtubeData.items.map((item: any) => ({
 			id: item.contentDetails.videoId,
