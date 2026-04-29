@@ -22,8 +22,8 @@ export async function fetchYouTubeVideos(channelId) {
  * @param {string} accountUrl - The Mastodon account URL (e.g., https://mastodon.social/@username).
  */
 export async function fetchMastodonPost(accountUrl) {
-  let domain = 'mastodon.social';
-  let accountId = import.meta.env.MASTODON_ACCOUNT_ID || '109243'; // Hardcoded fallback as requested
+  let domain = 'fosstodon.org';
+  let accountId = import.meta.env.MASTODON_ACCOUNT_ID || '113425089841635422'; // Hardcoded fallback as requested
 
   if (accountUrl) {
     try {

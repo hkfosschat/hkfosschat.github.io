@@ -5,7 +5,7 @@ import { fetchMastodonPost, fetchThreadsPost } from '../utils/api.js';
 
 let mastodonPost = null;
 try {
-	const mastodonData = await fetchMastodonPost('https://mastodon.social/@HKFOSSChat');
+	const mastodonData = await fetchMastodonPost('https://fosstodon.org/@hkfosschat');
 	if (mastodonData && mastodonData.length > 0) {
 		const post = mastodonData[0];
 		mastodonPost = {
@@ -38,18 +38,19 @@ try {
 }
 ---
 
-<Layout title="Welcome to Starpod">
+<Layout title="我哋講開">
 	<header class="mb-12">
+		<img src="/images/logo.webp" alt="我哋講開 Logo" class="h-24 md:h-32 mb-6" />
 		<h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
-			Starpod
+			我哋講開
 		</h1>
 		<p class="text-lg text-slate-300 mb-6">
-			Welcome to our brand new podcast.
+			用廣東話，由淺入深，暢談開源科技新聞，淺談技術細節
 		</p>
 		<div class="flex gap-4">
-			<a href="https://youtube.com/@HKFOSSChat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">YouTube</a>
-			<a href="https://mastodon.social/@HKFOSSChat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Mastodon</a>
-			<a href="https://threads.net/@HKFOSSChat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Threads</a>
+			<a href="https://www.youtube.com/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">YouTube</a>
+			<a href="https://fosstodon.org/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Mastodon</a>
+			<a href="https://www.threads.net/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Threads</a>
 			<a href="/videos" class="text-blue-400 hover:text-blue-300 transition-colors ml-auto">All Videos &rarr;</a>
 		</div>
 	</header>
