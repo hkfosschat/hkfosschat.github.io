@@ -1,0 +1,43 @@
+name: Rotate Threads Token
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Monthly on the 1st of the month
+  workflow_dispatch:
+
+jobs:
+  rotate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Refresh Threads Access Token
+        id: refresh
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          # Fetch the new long-lived token
+          RESPONSE=$(curl -s -X GET "https://graph.threads.net/refresh_access_token?grant_type=th_refresh_token&access_token=${THREADS_ACCESS_TOKEN}")
+          
+          # Parse the new token using jq
+          NEW_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token')
+          
+          if [ "$NEW_TOKEN" == "null" ] || [ -z "$NEW_TOKEN" ]; then
+            echo "Failed to retrieve new token. Response was: $RESPONSE"
+            exit 1
+          fi
+          
+          # Mask the new token in logs to prevent accidental exposure
+          echo "::add-mask::$NEW_TOKEN"
+          
+          # Output for next step
+          echo "new_token=$NEW_TOKEN" >> "$GITHUB_OUTPUT"
+
+      - name: Update GitHub Secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          NEW_TOKEN: ${{ steps.refresh.outputs.new_token }}
+        run: |
+          # Use GitHub CLI to update the repository secret
+          gh secret set THREADS_ACCESS_TOKEN -b"$NEW_TOKEN"
