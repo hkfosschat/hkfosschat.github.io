@@ -36,12 +36,21 @@ export async function fetchMastodonPost(accountUrl) {
     }
   }
 
-  const url = `https://${domain}/api/v1/accounts/${accountId}/statuses?limit=1&exclude_replies=true`;
+  const url = `https://${domain}/api/v1/accounts/${accountId}/statuses?limit=10&exclude_replies=true`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Mastodon API error: ${response.statusText}`);
   }
-  return response.json();
+  const data = await response.json();
+  
+  // Filter out self-replies since `exclude_replies=true` still includes them
+  // We want the most recent post that isn't a reply to anything, AND
+  // we want to ensure it's a main post with substantial content.
+  // We'll filter for posts with in_reply_to_id === null.
+  const topLevelPosts = data.filter(post => post.in_reply_to_id === null);
+  
+  // Return array with the single latest top-level post if available
+  return topLevelPosts.length > 0 ? [topLevelPosts[0]] : [];
 }
 
 /**
