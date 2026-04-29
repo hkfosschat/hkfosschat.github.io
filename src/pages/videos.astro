@@ -22,12 +22,12 @@ try {
 
 <Layout title="Videos | 我哋講開">
 	<header class="mb-12">
-		<a href="/" class="text-blue-400 hover:text-blue-300 transition-colors inline-block mb-4">&larr; Back to Home</a>
+		<a href="/" class="text-[#ff0000] hover:text-red-700 transition-colors inline-block mb-4">&larr; Back to Home</a>
 		<img src="/images/logo.webp" alt="我哋講開 Logo" class="h-16 md:h-20 mb-4" />
-		<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+		<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-4">
 			Videos
 		</h1>
-		<p class="text-lg text-slate-300">
+		<p class="text-lg text-gray-600">
 			Watch our latest podcast episodes and clips on YouTube.
 		</p>
 	</header>
@@ -36,8 +36,8 @@ try {
 		{videos.length > 0 ? (
 			<VideoGrid videos={videos} />
 		) : (
-			<div class="bg-slate-900 border border-slate-800 rounded-xl p-8 text-center">
-				<p class="text-slate-400">No videos found. Check back later or make sure the API key is set up!</p>
+			<div class="bg-gray-100 border border-gray-200 rounded-xl p-8 text-center">
+				<p class="text-gray-600">No videos found. Check back later or make sure the API key is set up!</p>
 			</div>
 		)}
 	</main>

@@ -15,12 +15,12 @@ const { videos } = Astro.props;
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 	{videos.map((video) => (
-		<a href={video.url} target="_blank" rel="noopener noreferrer" class="group block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:border-slate-600 transition-colors">
-			<div class="aspect-video relative overflow-hidden bg-slate-800">
+		<a href={video.url} target="_blank" rel="noopener noreferrer" class="group block bg-gray-100 border border-gray-200 rounded-xl overflow-hidden hover:border-gray-400 transition-colors">
+			<div class="aspect-video relative overflow-hidden bg-gray-200">
 				<img src={video.thumbnail} alt={video.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
 			</div>
 			<div class="p-4">
-				<h3 class="text-white font-medium line-clamp-2 group-hover:text-blue-400 transition-colors">{video.title}</h3>
+				<h3 class="text-gray-900 font-medium line-clamp-2 group-hover:text-[#ff0000] transition-colors">{video.title}</h3>
 			</div>
 		</a>
 	))}

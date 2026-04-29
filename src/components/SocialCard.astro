@@ -10,14 +10,14 @@ interface Props {
 const { platform, author, content, date, url } = Astro.props;
 ---
 
-<div class="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
+<div class="bg-gray-100 border border-gray-200 rounded-xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
 	<div class="flex justify-between items-center">
-		<div class="font-semibold text-white">{author}</div>
-		<div class="text-sm text-slate-400 capitalize bg-slate-800 px-2 py-1 rounded">{platform}</div>
+		<div class="font-semibold text-gray-900">{author}</div>
+		<div class="text-sm text-gray-600 capitalize bg-gray-200 px-2 py-1 rounded">{platform}</div>
 	</div>
-	<div class="text-slate-300 whitespace-pre-line" set:html={content}></div>
-	<div class="text-sm text-slate-500 mt-auto pt-4 flex justify-between items-center border-t border-slate-800">
+	<div class="text-gray-800 whitespace-pre-line" set:html={content}></div>
+	<div class="text-sm text-gray-500 mt-auto pt-4 flex justify-between items-center border-t border-gray-200">
 		<time datetime={date}>{new Date(date).toLocaleDateString()}</time>
-		<a href={url} target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300">View Post &rarr;</a>
+		<a href={url} target="_blank" rel="noopener noreferrer" class="text-[#ff0000] hover:text-red-700">View Post &rarr;</a>
 	</div>
 </div>

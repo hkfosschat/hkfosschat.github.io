@@ -41,46 +41,46 @@ try {
 <Layout title="我哋講開">
 	<header class="mb-12">
 		<img src="/images/logo.webp" alt="我哋講開 Logo" class="h-24 md:h-32 mb-6" />
-		<h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
+		<h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-4">
 			我哋講開
 		</h1>
-		<p class="text-lg text-slate-300 mb-6">
+		<p class="text-lg text-gray-600 mb-6">
 			用廣東話，由淺入深，暢談開源科技新聞，淺談技術細節
 		</p>
 		<div class="flex gap-4">
-			<a href="https://www.youtube.com/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">YouTube</a>
-			<a href="https://fosstodon.org/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Mastodon</a>
-			<a href="https://www.threads.net/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Threads</a>
-			<a href="/videos" class="text-blue-400 hover:text-blue-300 transition-colors ml-auto">All Videos &rarr;</a>
+			<a href="https://www.youtube.com/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">YouTube</a>
+			<a href="https://fosstodon.org/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">Mastodon</a>
+			<a href="https://www.threads.net/@hkfosschat" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">Threads</a>
+			<a href="/videos" class="text-[#ff0000] hover:text-red-700 transition-colors ml-auto">All Videos &rarr;</a>
 		</div>
 	</header>
 
 	<main class="grid gap-12">
-		<section class="bg-slate-900 border border-slate-800 rounded-xl p-6 md:p-8">
-			<h2 class="text-2xl font-semibold mb-4 text-white">Latest Episodes</h2>
-			<div class="text-slate-400">
+		<section class="bg-gray-100 border border-gray-200 rounded-xl p-6 md:p-8">
+			<h2 class="text-2xl font-semibold mb-4 text-gray-900">Latest Episodes</h2>
+			<div class="text-gray-600">
 				Coming soon...
 			</div>
 		</section>
 
 		<section class="grid md:grid-cols-2 gap-8">
 			<div>
-				<h2 class="text-2xl font-semibold mb-4 text-white">Recent on Mastodon</h2>
+				<h2 class="text-2xl font-semibold mb-4 text-gray-900">Recent on Mastodon</h2>
 				{mastodonPost ? (
 					<SocialCard {...mastodonPost} />
 				) : (
-					<div class="bg-slate-900 border border-slate-800 rounded-xl p-6 text-slate-500 italic">
+					<div class="bg-gray-100 border border-gray-200 rounded-xl p-6 text-gray-500 italic">
 						Unable to load recent post. Check back later!
 					</div>
 				)}
 			</div>
 			
 			<div>
-				<h2 class="text-2xl font-semibold mb-4 text-white">Recent on Threads</h2>
+				<h2 class="text-2xl font-semibold mb-4 text-gray-900">Recent on Threads</h2>
 				{threadsPost ? (
 					<SocialCard {...threadsPost} />
 				) : (
-					<div class="bg-slate-900 border border-slate-800 rounded-xl p-6 text-slate-500 italic">
+					<div class="bg-gray-100 border border-gray-200 rounded-xl p-6 text-gray-500 italic">
 						Unable to load recent post. Check back later!
 					</div>
 				)}
