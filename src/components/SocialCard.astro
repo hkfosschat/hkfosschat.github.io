@@ -18,6 +18,6 @@ const { platform, author, content, date, url } = Astro.props;
 	<div class="text-gray-800 whitespace-pre-line" set:html={content}></div>
 	<div class="text-sm text-gray-500 mt-auto pt-4 flex justify-between items-center border-t border-gray-200">
 		<time datetime={date}>{new Date(date).toLocaleDateString()}</time>
-		<a href={url} target="_blank" rel="noopener noreferrer" class="text-[#ff0000] hover:text-red-700">View Post &rarr;</a>
+		<a href={url} target="_blank" rel="noopener noreferrer" class="text-[#065fd4] hover:text-blue-800 transition-colors">View Post &rarr;</a>
 	</div>
 </div>
