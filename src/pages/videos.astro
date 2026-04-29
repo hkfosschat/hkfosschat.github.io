@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VideoGrid from '../components/VideoGrid.astro';
+import { fetchYouTubeVideos } from '../utils/social';
+
+const videos = await fetchYouTubeVideos('UC_YOURCHANNEL_PLACEHOLDER');
+---
+
+<Layout title="Videos | Starpod">
+	<header class="mb-12">
+		<a href="/" class="text-blue-400 hover:text-blue-300 transition-colors inline-block mb-4">&larr; Back to Home</a>
+		<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+			Videos
+		</h1>
+		<p class="text-lg text-slate-300">
+			Watch our latest podcast episodes and clips on YouTube.
+		</p>
+	</header>
+
+	<main>
+		{videos.length > 0 ? (
+			<VideoGrid videos={videos} />
+		) : (
+			<div class="bg-slate-900 border border-slate-800 rounded-xl p-8 text-center">
+				<p class="text-slate-400">No videos found. Check back later or make sure the API key is set up!</p>
+			</div>
+		)}
+	</main>
+</Layout>

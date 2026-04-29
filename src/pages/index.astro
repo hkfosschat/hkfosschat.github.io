@@ -1,5 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SocialCard from '../components/SocialCard.astro';
+import { fetchMastodonPost, fetchThreadsPost } from '../utils/social';
+
+const mastodonPost = await fetchMastodonPost();
+const threadsPost = await fetchThreadsPost();
 ---
 
 <Layout title="Welcome to Starpod">
@@ -7,16 +12,46 @@ import Layout from '../layouts/Layout.astro';
 		<h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
 			Starpod
 		</h1>
-		<p class="text-lg text-slate-300">
+		<p class="text-lg text-slate-300 mb-6">
 			Welcome to our brand new podcast.
 		</p>
+		<div class="flex gap-4">
+			<a href="https://youtube.com/@HKFOSSChat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">YouTube</a>
+			<a href="https://mastodon.social/@HKFOSSChat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Mastodon</a>
+			<a href="https://threads.net/@HKFOSSChat" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">Threads</a>
+			<a href="/videos" class="text-blue-400 hover:text-blue-300 transition-colors ml-auto">All Videos &rarr;</a>
+		</div>
 	</header>
 
-	<main>
+	<main class="grid gap-12">
 		<section class="bg-slate-900 border border-slate-800 rounded-xl p-6 md:p-8">
-			<h2 class="text-2xl font-semibold mb-4">Latest Episodes</h2>
+			<h2 class="text-2xl font-semibold mb-4 text-white">Latest Episodes</h2>
 			<div class="text-slate-400">
 				Coming soon...
+			</div>
+		</section>
+
+		<section class="grid md:grid-cols-2 gap-8">
+			<div>
+				<h2 class="text-2xl font-semibold mb-4 text-white">Recent on Mastodon</h2>
+				{mastodonPost ? (
+					<SocialCard {...mastodonPost} />
+				) : (
+					<div class="bg-slate-900 border border-slate-800 rounded-xl p-6 text-slate-500 italic">
+						Unable to load recent post. Check back later!
+					</div>
+				)}
+			</div>
+			
+			<div>
+				<h2 class="text-2xl font-semibold mb-4 text-white">Recent on Threads</h2>
+				{threadsPost ? (
+					<SocialCard {...threadsPost} />
+				) : (
+					<div class="bg-slate-900 border border-slate-800 rounded-xl p-6 text-slate-500 italic">
+						Unable to load recent post. Check back later!
+					</div>
+				)}
 			</div>
 		</section>
 	</main>
