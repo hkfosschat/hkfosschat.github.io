@@ -36,7 +36,7 @@ export async function fetchMastodonPost(accountUrl) {
     }
   }
 
-  const url = `https://${domain}/api/v1/accounts/${accountId}/statuses?limit=1`;
+  const url = `https://${domain}/api/v1/accounts/${accountId}/statuses?limit=1&exclude_replies=true`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Mastodon API error: ${response.statusText}`);
