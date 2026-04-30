@@ -23,7 +23,12 @@ export async function fetchYouTubeVideos(channelId) {
  */
 export async function fetchMastodonPost(accountUrl) {
   let domain = 'fosstodon.org';
-  let accountId = import.meta.env.MASTODON_ACCOUNT_ID || '113425089841635422'; // Hardcoded fallback as requested
+  let accountId = '113425089841635422';
+  try {
+    if (import.meta.env && import.meta.env.MASTODON_ACCOUNT_ID) {
+      accountId = import.meta.env.MASTODON_ACCOUNT_ID;
+    }
+  } catch(e) {}
 
   if (accountUrl) {
     try {
@@ -58,6 +63,11 @@ export async function fetchMastodonPost(accountUrl) {
  */
 export async function fetchThreadsPost() {
   const accessToken = import.meta.env.THREADS_ACCESS_TOKEN;
+  
+  if (!accessToken) {
+    throw new Error('Threads token not configured');
+  }
+
   const url = `https://graph.threads.net/v1.0/me/threads?access_token=${accessToken}`;
   
   const response = await fetch(url);

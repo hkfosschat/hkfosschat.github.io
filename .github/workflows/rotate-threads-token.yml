@@ -17,6 +17,11 @@ jobs:
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
         run: |
+          if [ -z "${THREADS_ACCESS_TOKEN}" ]; then
+            echo "No token configured. Skipping rotation."
+            exit 0
+          fi
+          
           # Fetch the new long-lived token
           RESPONSE=$(curl -s -X GET "https://graph.threads.net/refresh_access_token?grant_type=th_refresh_token&access_token=${THREADS_ACCESS_TOKEN}")
           
@@ -35,6 +40,7 @@ jobs:
           echo "new_token=$NEW_TOKEN" >> "$GITHUB_OUTPUT"
 
       - name: Update GitHub Secret
+        if: steps.refresh.outputs.new_token != ''
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           NEW_TOKEN: ${{ steps.refresh.outputs.new_token }}
