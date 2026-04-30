@@ -22,13 +22,13 @@ try {
 
 <Layout title="Videos | 我哋講開">
 	<header class="mb-12">
-		<a href="/" class="text-[#065fd4] hover:text-blue-800 transition-colors inline-block mb-4">&larr; Back to Home</a>
+		<a href="/" class="text-[#065fd4] hover:text-blue-800 transition-colors inline-block mb-4">&larr; 回到主頁</a>
 		<img src="/images/logo.webp" alt="我哋講開 Logo" class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover shadow-sm mb-4" />
 		<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-4">
-			Videos
+			歷來影片
 		</h1>
 		<p class="text-lg text-gray-600">
-			Watch our latest podcast episodes and clips on YouTube.
+			點擊並在 YouTube 上觀看我們的影片
 		</p>
 	</header>
 
@@ -37,7 +37,7 @@ try {
 			<VideoGrid videos={videos} />
 		) : (
 			<div class="bg-gray-100 border border-gray-200 rounded-xl p-8 text-center">
-				<p class="text-gray-600">No videos found. Check back later or make sure the API key is set up!</p>
+				<p class="text-gray-600">沒有找到影片，請確定生成的程序有正確設定好對應的 API key。</p>
 			</div>
 		)}
 	</main>
