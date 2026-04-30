@@ -16,6 +16,10 @@ const { title = "我哋講開", description = "用廣東話，由淺入深，暢
 		<link rel="icon" type="image/webp" href="/images/logo.webp" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL('/images/logo.webp', Astro.site || 'https://hkfosschat.github.io/')} />
+		<meta property="og:type" content="website" />
 		<title>{title}</title>
 	</head>
 	<body class="bg-white text-gray-900 min-h-screen">
